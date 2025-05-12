@@ -650,22 +650,7 @@ with tab8:  # ==================================================================
 
         with st.expander("Iqra Dynamic Graph"):
             
-            #df = pd.read_csv('https://github.com/chris1610/pbpython/blob/master/data/cereal_data.csv?raw=True')
-            df = pd.read_excel('c:/mfa/iqradata.xlsx')
-            
-            #df['newf'] = df['type']+'-'+df['shelf']
-            
-            st.write(df)
-    #        Campus	Faculty	Career	Program	ctype	semister	credithh
-    #        'Campus','Faculty','Career','Program','ctype','semister'	credithh
-
-
-            fig = px.sunburst(df, path=['Campus','Faculty','Career','Program','ctype','semister'], values='credithh')
-            #fig = px.sunburst(df, path=['mfr','shelf','type'], values='cereal')
-            #fig.show()
-            st.plotly_chart(fig)
-            
-
+            st.header("Muhammad is the best in all over the universes")
             
         with st.expander("Dynamic Graph"):
             
