@@ -897,8 +897,8 @@ with tab11:  # =================================================================
     #item1 = mm[1]
     mfa= pd.DataFrame(dta['selected_rows'])
     #st.write(mm)
-    length = len(mm)
-    if length>0 :
+    if len(dta['selected_rows'])>0 :
+    #if length>0 :
     #st.write(mfa["fullcode"][0])
         df7 = df5 
         filtered_df = df5[df5['code'] == mfa["fullcode"][0]]
