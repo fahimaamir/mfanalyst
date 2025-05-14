@@ -1,3 +1,6 @@
+import mysql.connector
+from streamlit_js_eval import streamlit_js_eval
+import datetime
 import numpy as np
 import os
 import streamlit.components.v1 as components
@@ -63,6 +66,9 @@ import numpy as np
 
 
 
+
+
+
 st.html("""
     <style>
         .stMainBlockContainer {
@@ -100,7 +106,7 @@ data = load_data()
 
 
 shouldDisplayPivoted = st.checkbox("Pivot data on Reference Date",True)
-tab1, tab2, tab3, tab4 , tab5, tab6, tab7,tab8,tab9,tab10,tab11 = st.tabs(["View-1", "View-2", "View-3", "View-4", "View-5", "View-6", "View-7", "View-Graph", "View-Groupby", "View-Pivot", "View-Finance"])
+tab1, tab2, tab3, tab4 , tab5, tab6, tab7,tab8,tab9,tab10,tab11,tab12,tab13 = st.tabs(["View-1", "View-2", "View-3", "View-4", "View-5", "View-6", "View-7", "View-Graph", "View-Groupby", "View-Pivot", "View-Finance", "Data Entery ", "MySql Data "])
 #tab1, tab2, tab3, tab4 = st.tabs(["View-1", "View-2", "View-3", "View-4"])
 
 with tab1:
@@ -911,17 +917,72 @@ with tab11:  # =================================================================
             #v_df = df6[df6['acode'] == mfahh["code"][0]]
             st.write(resultv)
                 
+with tab12:  # =======================================================================    
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+    st.title('Muhammad is the Best all over the universes')
+
+    vdate = st.date_input("V-Date", datetime.date(2019, 7, 6))
+
+    df = pd.DataFrame(    {        "sno": [       0  ],        "sname": [     ''    ],        " sfee": [      0   ]   })
+    mainag = st.data_editor(df,num_rows="dynamic",key="demo_df")
+    ttt2 = pd.DataFrame(mainag) 
+    ttt2["fdate"] = vdate
+    #rows = [tuple(x) for x in ttt2.values]
 
 
-                                    
+    if st.button("Save Record"):
+        conn = mysql.connector.connect(
+                host="hq3-6.h.filess.io",
+                user="mfadb_strongwill",
+                password="ffad1e1cd30388902ba276d26c3b4f6042dacd45",
+                database="mfadb_strongwill",
+                port=3307,
+
+            )
+        
+        curr = conn.cursor()
+        rows = [tuple(x) for x in ttt2.values]
+        insert_query = "INSERT INTO stable (sno,sname , sfee , fdate ) VALUES (%s,%s, %s, %s)"
+        for row in rows:
+            curr.execute(insert_query, row)
+        
+        
+        conn.commit()
+        conn.close()
+        #ttt = 'Data Save'
+        #st.write(ttt)
+    
+        streamlit_js_eval(js_expressions="parent.window.location.reload()")        
+        
+        
+        
+with tab13:  # =======================================================================    
+        
+    conn = mysql.connector.connect(
+    host="9r-1o.h.filess.io",
+    user="mfaerpdb_behaviorme",
+    password="6d9a14c6f222ec9f3c724a611c8a184e5d01ed9f",
+    database="mfaerpdb_behaviorme",
+    port=3307
+    )
+
+
+    curr = conn.cursor()
+    curr.execute("select * from mfaerptable")
+    data = curr.fetchall()
+    st.title('Muhammad is the Best all over the universes')
+    df = pd.DataFrame(data,columns=curr.column_names)
+    st.write(df)
+    conn.close()
+
+                
+                
+                
+                
+                
+                
+                
+                
+
+
+                                        
