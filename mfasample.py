@@ -1,6 +1,5 @@
 import mysql.connector
-#from streamlit_js_eval import streamlit_js_eval
-import streamlit_js_eval
+from streamlit_js_eval import streamlit_js_eval
 import datetime
 import numpy as np
 import os
@@ -63,9 +62,14 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import numpy as np
 
+if 'newrecord' not in st.session_state:
+    st.session_state.newrecord = 0
 
 
 
+
+
+    
 
 
 
@@ -919,19 +923,26 @@ with tab11:  # =================================================================
             st.write(resultv)
                 
 with tab12:  # =======================================================================    
+
             
     st.title('Muhammad is the Best all over the universes')
-
     vdate = st.date_input("V-Date", datetime.date(2019, 7, 6))
 
+ #   def stdataedtiorload():
+            
+
+#    if st.button("New Record", on_click=stdataedtiorload):
+    #if st.session_state.newrecord==0 :
     df = pd.DataFrame(    {        "sno": [       0  ],        "sname": [     ''    ],        " sfee": [      0   ]   })
-    mainag = st.data_editor(df,num_rows="dynamic",key="demo_df")
-    ttt2 = pd.DataFrame(mainag) 
+    newrecord1 = st.data_editor(df,num_rows="dynamic",key="demo_df")
+    
+        
+    ttt2 = pd.DataFrame(newrecord1) 
     ttt2["fdate"] = vdate
-    #rows = [tuple(x) for x in ttt2.values]
+        #rows = [tuple(x) for x in ttt2.values]
 
 
-    if st.button("Save Record"):
+    if st.button("Save Record", ):
         conn = mysql.connector.connect(
                 host="hq3-6.h.filess.io",
                 user="mfadb_strongwill",
@@ -950,9 +961,12 @@ with tab12:  # =================================================================
         
         conn.commit()
         conn.close()
+        #df = pd.DataFrame(    {        "sno": [       0  ],        "sname": [     ''    ],        " sfee": [      0   ]   })
+        #newrecord1 = st.data_editor(df,num_rows="dynamic",key="demo_df")
+        #st.title('Muhammad is the Best all over the universes')
         #ttt = 'Data Save'
         #st.write(ttt)
-    
+        
         streamlit_js_eval(js_expressions="parent.window.location.reload()")        
         
         
