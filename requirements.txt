@@ -392,7 +392,6 @@ streamlit-faker==0.0.3
 streamlit-google-auth==1.1.8
 streamlit-image-coordinates==0.1.9
 streamlit-jdgrid==0.3.7
-streamlit_js_eval
 streamlit-keyup==0.2.4
 streamlit-modal==0.1.2
 streamlit-option-menu==0.4.0

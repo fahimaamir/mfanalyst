@@ -930,18 +930,32 @@ with tab12:  # =================================================================
 
  #   def stdataedtiorload():
             
+#    column_config={              "rating": st.column_config.NumberColumn()},
+# "command": "Streamlit Command",
+  #      "rating": st.column_config.NumberColumn(),
+  #      "is_widget": "Widget ?",
+  #  },
+  #  disabled=["command", "is_widget"],
+  #  hide_index=True,
 
 #    if st.button("New Record", on_click=stdataedtiorload):
     #if st.session_state.newrecord==0 :
-    df = pd.DataFrame(    {        "sno": [       0  ],        "sname": [     ''    ],        " sfee": [      0   ]   })
-    newrecord1 = st.data_editor(df,num_rows="dynamic",key="demo_df")
     
-        
+
+    df = pd.DataFrame(    {        "sno": [       None  ],        "sname": [     None    ],        " sfee": [      0   ]   })
+    newrecord1 = st.data_editor(df,num_rows="dynamic",key="demo_df",  
+        column_config={
+        "sno": st.column_config.NumberColumn(),
+        "sfee": st.column_config.NumberColumn(),
+        })
+    
+  
     ttt2 = pd.DataFrame(newrecord1) 
     ttt2["fdate"] = vdate
+    df_no_null = ttt2[ttt2['sno'].notna()]
         #rows = [tuple(x) for x in ttt2.values]
 
-
+    st.write(df_no_null)
     if st.button("Save Record", ):
         conn = mysql.connector.connect(
                 host="hq3-6.h.filess.io",
@@ -965,9 +979,9 @@ with tab12:  # =================================================================
         #newrecord1 = st.data_editor(df,num_rows="dynamic",key="demo_df")
         #st.title('Muhammad is the Best all over the universes')
         #ttt = 'Data Save'
-        #st.write(ttt)
+        st.write("Data Save")
         
-        streamlit_js_eval(js_expressions="parent.window.location.reload()")        
+#        streamlit_js_eval(js_expressions="parent.window.location.reload()")        
         
         
         
@@ -1001,3 +1015,5 @@ with tab13:  # =================================================================
 
 
                                         
+#xtrain = df.loc[df['Survive'].notnull(), ['Age','Fare', 'Group_Size','deck', 'Pclass', 'Title' ]]
+#new_df = xtrain.loc[df['Survive'].notna()]
