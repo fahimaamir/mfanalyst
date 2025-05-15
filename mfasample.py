@@ -1,5 +1,4 @@
 import mysql.connector
-from streamlit_js_eval import streamlit_js_eval
 import datetime
 import numpy as np
 import os
